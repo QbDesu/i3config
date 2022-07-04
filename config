@@ -1,0 +1,43 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+#
+# Logo key
+set $mod Mod4
+set $alt Mod1
+set $ctrl Control
+# set $tilde asciitilde
+# set $altgr ISO_Level3_Shift
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+#
+# Basic key bindings:
+#
+    # Start a terminal
+    bindsym $mod+Return exec ~/.config/sway/bin/sway-sensible-terminal
+    # Kill focused window
+    bindsym $mod+Shift+q kill
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+
+include ~/.config/sway/config.d/*
