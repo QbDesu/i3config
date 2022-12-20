@@ -1,43 +1,40 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
+############    keys   ############
 
-### Variables
-#
-# Logo key
+# mod key = super | logo key
 set $mod Mod4
+
+# aliases for common keys with stupid keysym names
 set $alt Mod1
 set $ctrl Control
-# set $tilde asciitilde
-# set $altgr ISO_Level3_Shift
-# Home row direction keys, like vim
+set $pageup Prior
+set $pagedown Next
+set $tilde asciitilde
+set $altgr ISO_Level3_Shift
+set $print Print
+
+# keys for vim style direction keys
 set $left h
 set $down j
 set $up k
 set $right l
 
-#
-# Basic key bindings:
-#
-    # Start a terminal
-    bindsym $mod+Return exec ~/.config/sway/bin/sway-sensible-terminal
-    # Kill focused window
-    bindsym $mod+Shift+q kill
+############    applications   ############
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+set $term i3-sensible-terminal 
+set $launcher "rofi -modes drun,run -show"
+set $exit "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'"
 
-    # Reload the configuration file
-    bindsym $mod+Shift+c reload
+############    includes   ############
 
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+include autostart/*
+include config.d/*
 
+############    application settings   ############
 
-include ~/.config/sway/config.d/*
+# focus, floating, & sticky
+# for_window [app_id="(?i)(?:blueman-manager|azote|gnome-disks)"] floating enable
+# for_window [app_id="(?i)(?:pavucontrol|nm-connection-editor|gsimplecal|galculator)"] floating enable
+# for_window [app_id="(?i)(?:firefox|chromium)"] border none
+# for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
+
+popup_during_fullscreen smart

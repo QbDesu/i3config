@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+while(true)
+do
+    xsel -c
+    sleep 0.5
+done
